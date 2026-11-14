@@ -1,7 +1,6 @@
 /* Carte numérique Watt’s Up · comportements */
 
-/* Remplace par l’adresse finale de la carte une fois hébergée (ex. https://wattsup.fr) */
-const CARTE_URL = "https://gentle-haze-feea.bamenouari.workers.dev";
+const CARTE_URL = "https://alexandrajardin.fr";
 /* Colle ici l’adresse du profil LinkedIn */
 const LINKEDIN_URL = "https://www.linkedin.com/in/alexandra-jardin-b7533722";
 if (LINKEDIN_URL) document.getElementById("linkedin").href = LINKEDIN_URL;
