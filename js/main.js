@@ -7,8 +7,19 @@ if (LINKEDIN_URL) document.getElementById("linkedin").href = LINKEDIN_URL;
 const urlCarte = () => CARTE_URL || location.href.split("#")[0];
 
 /* Mesure d’audience GoatCounter, sans cookie. Le code du site est dans index.html */
+/* Notifications ntfy sur le téléphone. S’abonner au sujet NTFY_SUJET dans l’appli ntfy */
+const NTFY_SUJET = "wattsup-card-9288aac32411";
+const enLocal = ["localhost", "127.0.0.1", ""].includes(location.hostname);
+function notifier(txt){
+  if (enLocal || !NTFY_SUJET) return;
+  try { fetch("https://ntfy.sh/" + NTFY_SUJET, {method:"POST", body:txt, keepalive:true}).catch(() => {}); } catch(e){}
+}
+const provenance = new URLSearchParams(location.search).get("ref") === "qr" ? " (QR code)" : "";
+notifier("Visite de la carte" + provenance);
+
 function compter(nom){
   try { if (window.goatcounter && goatcounter.count) goatcounter.count({path:"clic-" + nom, title:nom, event:true}); } catch(e){}
+  notifier("Clic : " + nom);
 }
 document.addEventListener("click", e => {
   const el = e.target.closest("[data-compter]");
