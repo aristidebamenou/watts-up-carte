@@ -6,6 +6,15 @@ const LINKEDIN_URL = "https://www.linkedin.com/in/alexandra-jardin-b7533722";
 if (LINKEDIN_URL) document.getElementById("linkedin").href = LINKEDIN_URL;
 const urlCarte = () => CARTE_URL || location.href.split("#")[0];
 
+/* Mesure d’audience GoatCounter, sans cookie. Le code du site est dans index.html */
+function compter(nom){
+  try { if (window.goatcounter && goatcounter.count) goatcounter.count({path:"clic-" + nom, title:nom, event:true}); } catch(e){}
+}
+document.addEventListener("click", e => {
+  const el = e.target.closest("[data-compter]");
+  if (el) compter(el.dataset.compter);
+}, true);
+
 const root = document.documentElement;
 const inter = document.getElementById("inter");
 
@@ -135,7 +144,7 @@ const boutonQr = document.getElementById("montrerQr");
 let qrFait = false;
 function ouvrirQr(){
   if(!qrFait && window.QRCode){
-    new QRCode(document.getElementById("qr"), {text:urlCarte(), width:420, height:420, colorDark:"#000000", colorLight:"#ffffff", correctLevel:QRCode.CorrectLevel.M});
+    new QRCode(document.getElementById("qr"), {text:new URL("?ref=qr", urlCarte()).href, width:420, height:420, colorDark:"#000000", colorLight:"#ffffff", correctLevel:QRCode.CorrectLevel.M});
     qrFait = true;
   }
   voile.classList.add("ouvert"); voile.setAttribute("aria-hidden","false");

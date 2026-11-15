@@ -43,20 +43,20 @@
     <section class="tableau" aria-label="Contacter Watt’s Up">
       <p class="repere phase" aria-hidden="true"><span class="trait-h"></span></p>
       <ul class="rangee">
-        <li style="--i:0"><a class="action" href="tel:+33682819041"><span class="levier" aria-hidden="true"><span>0</span><span>I</span></span><span class="txt"><span>Appeler</span><span>06 82 81 90 41</span></span><span class="led" aria-hidden="true"></span></a></li>
-        <li style="--i:1"><a class="action" href="https://wa.me/33682819041?text=Bonjour%2C%20je%20souhaite%20un%20devis%20pour%20" target="_blank" rel="noopener"><span class="levier" aria-hidden="true"><span>0</span><span>I</span></span><span class="txt"><span>Devis</span><span>Par WhatsApp</span></span><span class="led" aria-hidden="true"></span></a></li>
-        <li style="--i:2"><a class="action" id="linkedin" href="#" target="_blank" rel="noopener"><span class="levier" aria-hidden="true"><span>0</span><span>I</span></span><span class="txt"><span>LinkedIn</span><span>Profil</span></span><span class="led" aria-hidden="true"></span></a></li>
-        <li style="--i:3"><button class="action" id="montrerQr" type="button"><span class="levier" aria-hidden="true"><span>0</span><span>I</span></span><span class="txt"><span>QR code</span><span>À scanner</span></span><span class="led" aria-hidden="true"></span></button></li>
+        <li style="--i:0"><a class="action" href="tel:+33682819041" data-compter="appeler"><span class="levier" aria-hidden="true"><span>0</span><span>I</span></span><span class="txt"><span>Appeler</span><span>06 82 81 90 41</span></span><span class="led" aria-hidden="true"></span></a></li>
+        <li style="--i:1"><a class="action" data-compter="whatsapp" href="https://wa.me/33682819041?text=Bonjour%2C%20je%20souhaite%20un%20devis%20pour%20" target="_blank" rel="noopener"><span class="levier" aria-hidden="true"><span>0</span><span>I</span></span><span class="txt"><span>Devis</span><span>Par WhatsApp</span></span><span class="led" aria-hidden="true"></span></a></li>
+        <li style="--i:2"><a class="action" id="linkedin" data-compter="linkedin" href="#" target="_blank" rel="noopener"><span class="levier" aria-hidden="true"><span>0</span><span>I</span></span><span class="txt"><span>LinkedIn</span><span>Profil</span></span><span class="led" aria-hidden="true"></span></a></li>
+        <li style="--i:3"><button class="action" id="montrerQr" data-compter="qr-code" type="button"><span class="levier" aria-hidden="true"><span>0</span><span>I</span></span><span class="txt"><span>QR code</span><span>À scanner</span></span><span class="led" aria-hidden="true"></span></button></li>
       </ul>
       <p class="repere terre" aria-hidden="true"><span class="trait-h"></span></p>
-      <button class="module" id="vcard" type="button">
+      <button class="module" id="vcard" data-compter="fiche-contact" type="button">
         <span class="levier" aria-hidden="true"><span>0</span><span>I</span></span>
         <span class="module-txt"><span>Enregistrer le contact</span><span>Fiche .vcf</span></span>
         <span class="masse" aria-hidden="true"></span>
       </button>
     </section>
 
-    <button class="partager" id="partager" type="button">Partager la carte</button>
+    <button class="partager" id="partager" data-compter="partager" type="button">Partager la carte</button>
   </div>
 
   <footer class="pied">
@@ -77,5 +77,6 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" defer></script>
 <script src="js/main.js" defer></script>
+<script data-goatcounter="https://alexandrajardin.goatcounter.com/count" async src="https://gc.zgo.at/count.v4.js" integrity="sha384-nRw6qfbWyJha9LhsOtSb2YJDyZdKvvCFh0fJYlkquSFjUxp9FVNugbfy8q1jdxI+" crossorigin="anonymous"></script>
 </body>
 </html>
