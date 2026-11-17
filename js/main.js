@@ -149,26 +149,30 @@ document.getElementById("vcard").addEventListener("click", () => {
   annoncer("Fiche contact prête");
 });
 
-/* QR code */
+/* QR code : <dialog> natif. showModal() gère le focus, Échap et l’inertie du reste de la page */
 const voile = document.getElementById("voile");
 const boutonQr = document.getElementById("montrerQr");
-let qrFait = false;
+let qrFait = false, fermeture;
 function ouvrirQr(){
   if(!qrFait && window.QRCode){
     new QRCode(document.getElementById("qr"), {text:new URL("?ref=qr", urlCarte()).href, width:420, height:420, colorDark:"#000000", colorLight:"#ffffff", correctLevel:QRCode.CorrectLevel.M});
     qrFait = true;
   }
-  voile.classList.add("ouvert"); voile.setAttribute("aria-hidden","false");
-  document.getElementById("fermerQr").focus();
+  clearTimeout(fermeture);
+  if (!voile.open) voile.showModal();
+  voile.getBoundingClientRect(); /* calcule l’état fermé pour que la transition parte de lui */
+  voile.classList.add("ouvert");
 }
 function fermerQr(){
-  voile.classList.remove("ouvert"); voile.setAttribute("aria-hidden","true");
-  boutonQr.focus();
+  if (!voile.open) return;
+  voile.classList.remove("ouvert");
+  /* Laisser la feuille redescendre avant de fermer, sauf si les animations sont réduites */
+  fermeture = setTimeout(() => { voile.close(); boutonQr.focus(); }, calme ? 0 : 350);
 }
 boutonQr.addEventListener("click", ouvrirQr);
 document.getElementById("fermerQr").addEventListener("click", fermerQr);
 voile.addEventListener("click", e => { if(e.target === voile) fermerQr(); });
-document.addEventListener("keydown", e => { if(e.key === "Escape" && voile.classList.contains("ouvert")) fermerQr(); });
+voile.addEventListener("cancel", e => { e.preventDefault(); fermerQr(); });
 
 /* Partage */
 document.getElementById("partager").addEventListener("click", async () => {
